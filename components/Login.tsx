@@ -10,30 +10,36 @@ import {
   View,
 } from "react-native";
 import { ThemedText } from "./ThemedText";
+import axios from "axios";
+
+function getToken() {
+    // TODO
+    // window.location.href = "https://eduspec-canvas.eastus.cloudapp.azure.com/login/oauth2/auth?client_id=10000000000001&response_type=code&redirect_uri=https://nqqaa1k-anonymous-8081.exp.direct/"
+}
 
 export function Login() {
-  const [backgroundColor, setBackgroundColor] = useState(''); //TODO: use theme colors from parent state (theme)
-  const [isDisabled, setIsDisabled] = useState(true)
+  const [backgroundColor, setBackgroundColor] = useState(""); //TODO: use theme colors from parent state (theme)
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const isValidEmailFormat = (text: string) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(text) === false) {
       setBackgroundColor("coral");
-      setIsDisabled(true)
+      setIsDisabled(true);
     } else {
       setBackgroundColor("transparent");
-      setIsDisabled(false)
+      setIsDisabled(false);
     }
   };
 
   const styles = StyleSheet.create({
     container: {
       width: "75%",
-      maxWidth: 400
+      maxWidth: 400,
     },
     titleText: {
-        marginBottom: 36,
-        color: "black"
+      marginBottom: 36,
+      color: "black",
     },
     textInput: {
       height: 40,
@@ -55,7 +61,9 @@ export function Login() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <ThemedText type="title" style={styles.titleText}>Login with Canvas</ThemedText>
+      <ThemedText type="title" style={styles.titleText}>
+        Login with Canvas
+      </ThemedText>
       <TextInput
         placeholder="Email"
         inputMode="email"
@@ -70,7 +78,7 @@ export function Login() {
           title="Login"
           disabled={isDisabled}
           onPress={() => {
-            Alert.alert("Logged in");
+            getToken();
           }}
         />
       </View>
