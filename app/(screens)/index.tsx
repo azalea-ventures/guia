@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { StyleSheet, View, Animated, Pressable } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-
-
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -12,32 +10,53 @@ SplashScreen.preventAutoHideAsync();
 export default function HomeScreen() {
   const [appIsReady, setAppIsReady] = useState(false);
 
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnimActivity = useRef(new Animated.Value(0)).current;
+  const fadeAnimMain = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(fadeAnim, {
+  Animated.sequence([
+    //fade in
+    Animated.timing(fadeAnimMain, {
       toValue: 1,
       duration: 3000,
       delay: 1000,
       useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
+    }),
+    //fade out
+    Animated.timing(fadeAnimMain, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }),
+    Animated.timing(fadeAnimActivity, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: true
+    })
+  ]).start();
 
+  // TODO: here we replace hardcoded text with stateful refs
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Animated.Text style={[styles.titleText, { opacity: fadeAnim }]}>
+      <Animated.Text style={[styles.titleText, { opacity: fadeAnimMain }]}>
+        Family Activities
+      </Animated.Text>
+
+      <Animated.Text style={[styles.titleText, { opacity: fadeAnimActivity }]}>
         Dinner Placesetting
       </Animated.Text>
 
-      <Pressable onPress={() => {router.replace("/explore")}}>
+      <Pressable
+        onPress={() => {
+          router.replace("/explore");
+        }}
+      >
         <Image
           style={styles.image}
+          // TODO: replace w ref
           source={require("@/assets/images/karen-sewell-yLfsEMVbOWA-unsplash.jpg")}
           transition={1000}
         />
       </Pressable>
-
     </View>
   );
 }
