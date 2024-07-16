@@ -36,7 +36,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack
-        initialRouteName="home"
+        initialRouteName="(screens)/index"
         screenOptions={{
           headerShown: false,
         }}
