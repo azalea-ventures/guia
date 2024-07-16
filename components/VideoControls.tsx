@@ -112,9 +112,6 @@ const VideoControls: React.FC<Props> = (
         </>)
 }
 
-  
-        
-
 const styles = StyleSheet.create({
   controls: {
     flexDirection: "row",

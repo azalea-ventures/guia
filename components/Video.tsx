@@ -1,13 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Dimensions, FlatList, View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { ResizeMode, Video } from "expo-av";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
 import VideoControls from "./VideoControls";
 import * as ScreenOrientation from "expo-screen-orientation";
 
+
 const playbackSpeedOptions = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
-export default function VideoScreen () {
+
+const VideoScreen = () => {
   const videoRef = useRef(null);
   const [orientation, setOrientation] = useState(1);
   const [showControls, setShowControls] = useState(false);
@@ -100,9 +102,9 @@ export default function VideoScreen () {
     setOrientation(await ScreenOrientation.getOrientationAsync());
   };
 
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      
+    <GestureHandlerRootView style={{ flex: 1}}>
           <GestureDetector gesture={Gesture.Exclusive(doubleTap, singleTap)}>
             <Video
               ref={videoRef}
@@ -144,3 +146,6 @@ export default function VideoScreen () {
     </GestureHandlerRootView>
   );
 };
+
+export default VideoScreen;
+

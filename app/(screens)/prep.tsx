@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import {
   Animated,
-  Button,
   Dimensions,
   Pressable,
   StyleSheet,
@@ -9,7 +8,6 @@ import {
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Video, ResizeMode } from 'expo-av';
 import VideoScreen from "@/components/Video";
 
 
@@ -68,7 +66,9 @@ export default function ItemChecklist() {
 }
 
 const styles = StyleSheet.create({
-
+ video: {
+  position: "relative"
+ },
   image: {
     width: 300,
     height: 300,

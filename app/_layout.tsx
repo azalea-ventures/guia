@@ -44,6 +44,8 @@ export default function RootLayout() {
         <Stack.Screen name="(screens)/index"  options={{animation: 'fade'}}></Stack.Screen>
         <Stack.Screen name="(screens)/prep_splash" options={{animation: 'fade'}}></Stack.Screen>
         <Stack.Screen name="(screens)/prep" options={{animation: 'fade'}}></Stack.Screen>
+        <Stack.Screen name="(screens)/activity_splash" options={{animation: 'fade'}}></Stack.Screen>
+        <Stack.Screen name="(screens)/activity" options={{animation: 'fade'}}></Stack.Screen>
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
