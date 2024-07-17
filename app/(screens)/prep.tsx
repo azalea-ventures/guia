@@ -3,15 +3,16 @@ import {
   Animated,
   Dimensions,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import VideoScreen from "@/components/Video";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-
-const { height } = Dimensions.get("window");
+const { height } = Dimensions.get("screen");
 
 function Checkbox() {
   const [checked, setChecked] = useState(false);
@@ -33,42 +34,42 @@ export default function ItemChecklist() {
   const [status, setStatus] = useState({});
 
   return (
-    <Animated.ScrollView
+    <ScrollView
       snapToInterval={height}
       snapToAlignment={"start"}
       decelerationRate={"fast"}
+      contentContainerStyle={styles.prepContainer}
+      disableScrollViewPanResponder={true}
     >
-      {/* ~~~PLACE ADDITIONAL CHILD CONTAINERS IN HERE AS NEEDED~~~ */}
-      {/* Note that all child views below use the childContainer style. Be sure to do the same */}
-      <Animated.View style={styles.childContainer}>
-        <Text style={styles.childTitle}>Gather These Things</Text>
-        {/* TODO: map the checkboxes */}
-        <Checkbox />
-        <Checkbox />
-        <Checkbox />
-        <Checkbox />
-      </Animated.View>
+        <View style={styles.childContainer}>
+          <Text style={styles.childTitle}>Gather These Things</Text>
+          <Checkbox />
+          <Checkbox />
+          <Checkbox />
+          <Checkbox />
+        </View>
 
-      <Animated.View style={styles.childContainer}>
-        <Animated.Image
-          style={styles.image}
-          // TODO: replace w ref
-          source={require("@/assets/images/karen-sewell-yLfsEMVbOWA-unsplash.jpg")}
-        />
-      </Animated.View>
+        <View style={styles.childContainer}>
+          <Animated.Image
+            style={styles.image}
+            // TODO: replace w ref
+            source={require("@/assets/images/karen-sewell-yLfsEMVbOWA-unsplash.jpg")}
+          />
+        </View>
 
-      <Animated.View style={styles.childContainer}>
-        <VideoScreen></VideoScreen>
-      </Animated.View>
-
-    </Animated.ScrollView>
+        <View id="VIDEO_VIEW_CONTAINER" style={styles.childContainer}>
+          <VideoScreen></VideoScreen>
+        </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
- video: {
-  position: "relative"
- },
+  prepContainer: {
+    display: "flex",
+    width: "100%",
+    height: "fit-content"
+  },
   image: {
     width: 300,
     height: 300,

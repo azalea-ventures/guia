@@ -56,7 +56,7 @@ export default function HomeScreen() {
 
   // TODO: here we replace hardcoded text with stateful refs
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View id="INDEX_CONTAINER" style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Animated.Text style={[styles.titleText, { opacity: fadeAnimMain }]}>
           Family Activities, Day 3
         </Animated.Text>

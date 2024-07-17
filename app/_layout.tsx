@@ -1,21 +1,15 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import HomeScreen from "./(screens)";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export const unstable_settings = {
-  initialRouteName: "home",
-};
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -34,20 +28,16 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack
-        initialRouteName="(screens)/index"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="(screens)/index"  options={{animation: 'fade'}}></Stack.Screen>
-        <Stack.Screen name="(screens)/prep_splash" options={{animation: 'fade'}}></Stack.Screen>
-        <Stack.Screen name="(screens)/prep" options={{animation: 'fade'}}></Stack.Screen>
-        <Stack.Screen name="(screens)/activity_splash" options={{animation: 'fade'}}></Stack.Screen>
-        <Stack.Screen name="(screens)/activity" options={{animation: 'fade'}}></Stack.Screen>
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+
+    <Slot/>
+    // <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      // <Stack
+      //   id="STACK_CONTAINER"
+      //   initialRouteName="(screens)/index"
+      //   screenOptions={{
+      //     headerShown: false,
+      //   }}
+      // > </Stack>
+    // </ThemeProvider>
   );
 }

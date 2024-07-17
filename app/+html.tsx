@@ -20,8 +20,8 @@ export default function Root({ children }: PropsWithChildren) {
         <ScrollViewStyleReset />
 
         {/* Using raw CSS styles as an escape-hatch to ensure the background color never flickers in dark-mode. */}
-        <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
-        {/* Add any additional <head> elements that you want globally available on web... */}
+        <style dangerouslySetInnerHTML={{ __html: responsiveBackground }}/>
+                  {/* Add any additional <head> elements that you want globally available on web... */}
       </head>
       <body>{children}</body>
     </html>
@@ -31,9 +31,10 @@ export default function Root({ children }: PropsWithChildren) {
 const responsiveBackground = `
 body {
   background-color: #fff;
+  overflow: hidden;
 }
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-  }
+html, body { height: 100% }
+#root {
+  height: 100%
+}
 }`;
